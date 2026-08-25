@@ -11,36 +11,52 @@
 </head>
 <body>
 
-  <!-- Navigation Bar -->
-  <!-- Floating Pill Header -->
-  <div id="smart-header" class="px-4 pt-4 sm:pt-6 sticky top-0 z-50" style="transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
-    <nav class="max-w-6xl mx-auto rounded-3xl px-4 sm:px-6 py-3 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0 border border-white/20">
-      <a href="index.html" class="flex items-center space-x-3 group">
-        <div class="nav-btn w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center shadow-sm ">
+  <!-- Smart Header -->
+  <div id="smart-header" class="px-2 sm:px-4 pt-2 sm:pt-6 sticky top-0 z-50" style="transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
+    <nav class="max-w-6xl mx-auto rounded-2xl sm:rounded-3xl px-3 sm:px-6 py-2 sm:py-3 flex flex-row justify-between items-center border border-white/20" style="gap: 0;">
+
+      <!-- Logo (always visible) -->
+      <a href="index.html" class="flex items-center space-x-2 group flex-shrink-0">
+        <div class="nav-btn w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl overflow-hidden flex items-center justify-center shadow-sm">
           <img src="dog_icon.png" alt="Dog Icon" class="w-full h-full object-cover">
         </div>
-        <span class="font-outfit font-extrabold text-2xl theme-gradient-text tracking-tighter">GoodLuck :D</span>
+        <span class="font-outfit font-extrabold text-lg sm:text-2xl theme-gradient-text tracking-tighter">GoodLuck :D</span>
       </a>
-      <div class="flex flex-wrap justify-center items-center gap-1 sm:gap-2 md:gap-4 w-full md:w-auto">
-        <a href="index.html" class="nav-link font-outfit font-bold tracking-wide flex items-center"><i class="fa-solid fa-house sm:mr-2 text-sm"></i> <span class="hidden sm:inline">Home</span></a>
-        <a href="index.html#dashboard" class="nav-link font-outfit font-bold tracking-wide flex items-center"><i class="fa-solid fa-layer-group sm:mr-2 text-sm"></i> <span class="hidden sm:inline">Quizzes</span></a>
-        <a href="index.html#pdf-container" class="nav-link font-outfit font-bold tracking-wide flex items-center"><i class="fa-solid fa-file-pdf sm:mr-2 text-sm"></i> <span class="hidden sm:inline">Materials</span></a>
-        <div class="flex items-center ml-1 sm:ml-2 border-l border-white/20 pl-2 sm:pl-4 gap-1 sm:gap-2">
-          <select id="theme-selector" class="nav-btn text-sm font-medium rounded-xl font-outfit px-3 focus:ring-purple-500 focus:border-purple-500 block p-2 backdrop-blur-sm cursor-pointer outline-none">
-            <option value="aura">✨ Pastel Aura</option>
-            <option value="sunset">🌅 Peach Sunset</option>
-            <option value="glacial">❄️ Glacial Mint</option>
-          </select>
-          <button id="mode-toggle" class="nav-btn w-10 h-10 rounded-xl flex items-center justify-center focus:outline-none shadow-sm transition-transform hover:rotate-12">
-            <i id="mode-icon" class="fa-solid fa-moon"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </nav>
-  </div>
 
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 relative z-10">
+      <!-- Desktop Nav Links (hidden on mobile) -->
+      <div class="hidden md:flex items-center gap-1 sm:gap-2 md:gap-4">
+        <a href="index.html" class="nav-link font-outfit font-bold tracking-wide flex items-center"><i class="fa-solid fa-house mr-2 text-sm"></i>Home</a>
+        <a href="index.html#dashboard" class="nav-link font-outfit font-bold tracking-wide flex items-center"><i class="fa-solid fa-layer-group mr-2 text-sm"></i>Quizzes</a>
+        <a href="index.html#pdf-container" class="nav-link font-outfit font-bold tracking-wide flex items-center"><i class="fa-solid fa-file-pdf mr-2 text-sm"></i>Materials</a>
+      </div>
+
+      <!-- Right Controls -->
+      <div class="flex items-center gap-1 sm:gap-2">
+        <!-- Theme selector: compact on mobile -->
+        <select id="theme-selector" class="nav-btn text-xs sm:text-sm font-medium rounded-lg sm:rounded-xl font-outfit px-1.5 sm:px-3 p-1.5 sm:p-2 backdrop-blur-sm cursor-pointer outline-none max-w-[80px] sm:max-w-none">
+          <option value="aura">✨ Pastel Aura</option>
+          <option value="sunset">🌅 Peach Sunset</option>
+          <option value="glacial">❄️ Glacial Mint</option>
+        </select>
+        <!-- Mode toggle -->
+        <button id="mode-toggle" class="nav-btn w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center focus:outline-none shadow-sm transition-transform hover:rotate-12">
+          <i id="mode-icon" class="fa-solid fa-moon text-sm sm:text-base"></i>
+        </button>
+        <!-- Mobile hamburger (visible on mobile only) -->
+        <button id="mobile-menu-btn" class="nav-btn w-8 h-8 rounded-lg flex items-center justify-center md:hidden focus:outline-none shadow-sm" aria-label="Open menu">
+          <i id="hamburger-icon" class="fa-solid fa-bars text-sm"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden max-w-6xl mx-auto mt-1 rounded-2xl border border-white/20 px-4 py-3 flex flex-col gap-2" style="background: var(--nav-bg); backdrop-filter: blur(24px);">
+      <a href="index.html" class="nav-link font-outfit font-bold tracking-wide flex items-center py-2 border-b border-white/10"><i class="fa-solid fa-house mr-3"></i>Home</a>
+      <a href="index.html#dashboard" class="nav-link font-outfit font-bold tracking-wide flex items-center py-2 border-b border-white/10"><i class="fa-solid fa-layer-group mr-3"></i>Quizzes</a>
+      <a href="index.html#pdf-container" class="nav-link font-outfit font-bold tracking-wide flex items-center py-2"><i class="fa-solid fa-file-pdf mr-3"></i>Materials</a>
+    </div>
+  </div>
+<div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 relative z-10">
     <!-- Hero Section -->
     <div class="text-center mb-16 relative">
       <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full blur-[100px] opacity-30 pointer-events-none" style="background: var(--primary-color)"></div>
@@ -262,6 +278,27 @@
         ticking = true;
       }
     }, { passive: true });
+  </script>
+
+  <script>
+    // Mobile Hamburger Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        const isOpen = !mobileMenu.classList.contains('hidden');
+        mobileMenu.classList.toggle('hidden');
+        hamburgerIcon.className = isOpen ? 'fa-solid fa-bars text-sm' : 'fa-solid fa-xmark text-sm';
+      });
+      // Close menu on link click
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          hamburgerIcon.className = 'fa-solid fa-bars text-sm';
+        });
+      });
+    }
   </script>
 </body>
 </html>

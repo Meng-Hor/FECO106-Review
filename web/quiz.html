@@ -16,33 +16,47 @@
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <!-- Floating Pill Header -->
-    <div id="smart-header" class="px-4 pt-4 sm:pt-6 sticky top-0 z-50" style="transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
-        <nav class="max-w-6xl mx-auto rounded-3xl px-4 sm:px-6 py-3 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0 border border-white/20">
-            <a href="index.html" class="flex items-center space-x-3 group">
-                <div class="nav-btn w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center shadow-sm ">
-                    <img src="dog_icon.png" alt="Dog Icon" class="w-full h-full object-cover">
-                </div>
-                <span class="font-outfit font-extrabold text-2xl theme-gradient-text tracking-tighter">GoodLuck :D</span>
-            </a>
-            <div class="flex flex-wrap justify-center items-center gap-1 sm:gap-2 md:gap-4 w-full md:w-auto">
-                <a href="index.html" class="nav-link font-outfit font-bold tracking-wide flex items-center"><i class="fa-solid fa-house sm:mr-2 text-sm"></i> <span class="hidden sm:inline">Home</span></a>
-                <a href="index.html#dashboard" class="nav-link font-outfit font-bold tracking-wide flex items-center"><i class="fa-solid fa-layer-group sm:mr-2 text-sm"></i> <span class="hidden sm:inline">Quizzes</span></a>
-                <a href="index.html#pdf-container" class="nav-link font-outfit font-bold tracking-wide flex items-center"><i class="fa-solid fa-file-pdf sm:mr-2 text-sm"></i> <span class="hidden sm:inline">Materials</span></a>
-                <div class="flex items-center ml-1 sm:ml-2 border-l border-white/20 pl-2 sm:pl-4 gap-1 sm:gap-2">
-                    <select id="theme-selector" class="nav-btn text-sm font-medium rounded-xl font-outfit px-3 focus:ring-purple-500 focus:border-purple-500 block p-2 backdrop-blur-sm cursor-pointer outline-none">
-                        <option value="aura">✨ Pastel Aura</option>
-                        <option value="sunset">🌅 Peach Sunset</option>
-                        <option value="glacial">❄️ Glacial Mint</option>
-                    </select>
-                    <button id="mode-toggle" class="nav-btn w-10 h-10 rounded-xl flex items-center justify-center focus:outline-none shadow-sm transition-transform hover:rotate-12">
-                        <i id="mode-icon" class="fa-solid fa-moon"></i>
-                    </button>
-                </div>
-            </div>
+    <!-- Smart Header -->
+    <div id="smart-header" class="px-2 sm:px-4 pt-2 sm:pt-6 sticky top-0 z-50" style="transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
+      <nav class="max-w-6xl mx-auto rounded-2xl sm:rounded-3xl px-3 sm:px-6 py-2 sm:py-3 flex flex-row justify-between items-center border border-white/20">
+
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center space-x-2 group flex-shrink-0">
+          <div class="nav-btn w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl overflow-hidden flex items-center justify-center shadow-sm">
+            <img src="dog_icon.png" alt="Dog Icon" class="w-full h-full object-cover">
+          </div>
+          <span class="font-outfit font-extrabold text-lg sm:text-2xl theme-gradient-text tracking-tighter">GoodLuck :D</span>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <div class="hidden md:flex items-center gap-4">
+          <a href="index.html" class="nav-link font-outfit font-bold tracking-wide flex items-center"><i class="fa-solid fa-house mr-2 text-sm"></i>Home</a>
+          <a href="index.html#dashboard" class="nav-link font-outfit font-bold tracking-wide flex items-center"><i class="fa-solid fa-layer-group mr-2 text-sm"></i>Quizzes</a>
+          <a href="index.html#pdf-container" class="nav-link font-outfit font-bold tracking-wide flex items-center"><i class="fa-solid fa-file-pdf mr-2 text-sm"></i>Materials</a>
         </div>
-    </nav>
+
+        <!-- Right Controls -->
+        <div class="flex items-center gap-1 sm:gap-2">
+          <select id="theme-selector" class="nav-btn text-xs sm:text-sm font-medium rounded-lg sm:rounded-xl font-outfit px-1.5 sm:px-3 p-1.5 sm:p-2 backdrop-blur-sm cursor-pointer outline-none max-w-[80px] sm:max-w-none">
+            <option value="aura">✨ Pastel Aura</option>
+            <option value="sunset">🌅 Peach Sunset</option>
+            <option value="glacial">❄️ Glacial Mint</option>
+          </select>
+          <button id="mode-toggle" class="nav-btn w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center focus:outline-none shadow-sm transition-transform hover:rotate-12">
+            <i id="mode-icon" class="fa-solid fa-moon text-sm sm:text-base"></i>
+          </button>
+          <button id="mobile-menu-btn" class="nav-btn w-8 h-8 rounded-lg flex items-center justify-center md:hidden focus:outline-none shadow-sm" aria-label="Open menu">
+            <i id="hamburger-icon" class="fa-solid fa-bars text-sm"></i>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile Dropdown -->
+      <div id="mobile-menu" class="hidden md:hidden max-w-6xl mx-auto mt-1 rounded-2xl border border-white/20 px-4 py-3 flex flex-col gap-2" style="background: var(--nav-bg); backdrop-filter: blur(24px);">
+        <a href="index.html" class="nav-link font-outfit font-bold tracking-wide flex items-center py-2 border-b border-white/10"><i class="fa-solid fa-house mr-3"></i>Home</a>
+        <a href="index.html#dashboard" class="nav-link font-outfit font-bold tracking-wide flex items-center py-2 border-b border-white/10"><i class="fa-solid fa-layer-group mr-3"></i>Quizzes</a>
+        <a href="index.html#pdf-container" class="nav-link font-outfit font-bold tracking-wide flex items-center py-2"><i class="fa-solid fa-file-pdf mr-3"></i>Materials</a>
+      </div>
     </div>
 
     <div class="max-w-4xl mx-auto px-4 py-8 relative z-10">
@@ -50,29 +64,29 @@
 
         <!-- Quiz View -->
         <div id="quiz-view" class="hidden">
-            <div class="card-container p-4 sm:p-6 mb-6 relative">
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-4 sm:mb-6 border-b pb-4">
+            <div class="card-container p-3 sm:p-6 mb-4 sm:mb-6 relative">
+                <div class="flex flex-row justify-between items-center gap-2 mb-3 sm:mb-6 border-b pb-3 sm:pb-4">
                     <div>
-                        <h3 id="current-set-title" class="text-lg sm:text-xl font-bold text-gray-800 mb-1 font-outfit">Set Title</h3>
+                        <h3 id="current-set-title" class="text-sm sm:text-xl font-bold mb-0.5 sm:mb-1 font-outfit truncate max-w-[180px] sm:max-w-none">Set Title</h3>
                         <p class="text-sm text-gray-500">Question <span id="current-question-num">1</span> of <span id="total-questions">10</span></p>
                     </div>
                     <div class="flex items-center gap-4">
                         
-                        <div class="w-16 h-16 rounded-full border-4 border-blue-500 flex items-center justify-center relative transition-colors duration-300">
-                            <span id="time-left" class="text-xl font-bold">20</span>
+                        <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full border-4 border-blue-500 flex items-center justify-center relative transition-colors duration-300">
+                            <span id="time-left" class="text-base sm:text-xl font-bold">20</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="mb-8">
-                    <h2 id="question-text" class="text-xl sm:text-2xl font-semibold mb-6" style="color: var(--text-main)">Question text goes here?</h2>
+                    <h2 id="question-text" class="text-base sm:text-xl font-semibold mb-3 sm:mb-6" style="color: var(--text-main)">Question text goes here?</h2>
                     
-                    <div id="options-container" class="grid gap-4">
+                    <div id="options-container" class="grid gap-2 sm:gap-4">
                         <!-- Options generated here -->
                     </div>
                     
                     <div id="open-ended-container" class="hidden">
-                        <textarea id="open-ended-answer" rows="4" class="w-full p-4 border rounded-lg focus:ring-2 focus:ring-blue-500 mb-4" placeholder="Type your answer here..."></textarea>
+                        <textarea id="open-ended-answer" rows="3" class="w-full p-4 border rounded-lg focus:ring-2 focus:ring-blue-500 mb-4" placeholder="Type your answer here..."></textarea>
                         <button id="reveal-btn" class="btn-primary px-4 sm:px-6 py-2 sm:py-3 w-full"><i class="fa-solid fa-paper-plane mr-2"></i>Submit Answer</button>
                         
                         <div id="answer-feedback" class="hidden mt-6 p-5 card-container border rounded-xl">
@@ -86,7 +100,7 @@
                     </div>
                 </div>
 
-                <div class="flex justify-between items-center mt-8 border-t pt-4">
+                <div class="flex justify-between items-center mt-4 sm:mt-8 border-t pt-3 sm:pt-4">
                     <button id="quit-btn" class="btn-danger px-4 sm:px-6 py-2 sm:py-3"><i class="fa-solid fa-xmark mr-2"></i>Quit Quiz</button>
                     <button id="next-btn" class="btn-primary px-4 sm:px-6 py-2 sm:py-3 hidden">Next Question <i class="fa-solid fa-arrow-right ml-2"></i></button>
                 </div>
@@ -643,5 +657,26 @@ function startQuiz(index) {
             }
         }, { passive: true });
     </script>
+
+  <script>
+    // Mobile Hamburger Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        const isOpen = !mobileMenu.classList.contains('hidden');
+        mobileMenu.classList.toggle('hidden');
+        hamburgerIcon.className = isOpen ? 'fa-solid fa-bars text-sm' : 'fa-solid fa-xmark text-sm';
+      });
+      // Close menu on link click
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          hamburgerIcon.className = 'fa-solid fa-bars text-sm';
+        });
+      });
+    }
+  </script>
 </body>
 </html>

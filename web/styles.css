@@ -490,3 +490,40 @@ textarea:focus {
     background: transparent !important;
     padding: 0 !important;
 }
+
+
+/* ===== Mobile Responsive Overrides ===== */
+@media (max-width: 640px) {
+    /* Tighter option buttons on mobile */
+    .option-btn {
+        padding: 0.5rem 0.75rem !important;
+        font-size: 0.8rem;
+        border-radius: 0.625rem;
+    }
+
+    .option-badge {
+        padding: 0.15rem 0.5rem !important;
+        font-size: 0.75rem;
+        min-width: 1.5rem;
+        margin-right: 0.5rem !important;
+    }
+
+    /* Tighter primary/danger/secondary buttons */
+    .btn-primary, .btn-danger, .btn-secondary {
+        padding: 0.45rem 0.9rem;
+        font-size: 0.8rem;
+        border-radius: 0.625rem;
+    }
+
+    /* Tighter card padding globally */
+    .card-container {
+        border-radius: 1.25rem;
+    }
+
+    /* Compact quiz code block on mobile */
+    .quiz-code-block {
+        font-size: 0.72rem !important;
+        padding: 0.75rem !important;
+        border-radius: 0.5rem !important;
+    }
+}
