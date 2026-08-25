@@ -138,7 +138,10 @@
                 
             </div>
 
-            <button id="home-btn" class="btn-primary px-6 py-3 w-full max-w-xs mx-auto text-base rounded-xl relative z-10 shadow-lg transition-all"><i class="fa-solid fa-house mr-2"></i>Back to Dashboard</button>
+            <div class="flex flex-col sm:flex-row gap-3 max-w-xs mx-auto w-full relative z-10">
+                  <button id="retry-btn" class="btn-success px-6 py-3 w-full text-base rounded-xl shadow-lg transition-all flex items-center justify-center gap-2"><i class="fa-solid fa-rotate-right"></i>Retry Quiz</button>
+                  <button id="home-btn" class="btn-primary px-6 py-3 w-full text-base rounded-xl shadow-lg transition-all flex items-center justify-center gap-2"><i class="fa-solid fa-house"></i>Dashboard</button>
+              </div>
         </div>
     </div>
 
@@ -476,6 +479,10 @@ function startQuiz(index) {
         
         
         document.getElementById('home-btn').onclick = () => window.location.href = 'index.html';
+          document.getElementById('retry-btn').onclick = () => {
+              resultView.classList.add('hidden');
+              startQuiz(currentSetIndex);
+          };
         
         
 
