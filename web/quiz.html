@@ -3,29 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FECO106 Mid-Term Review</title>
+    <link rel="icon" type="image/png" href="dog_icon_rounded.png">
+    <title>FECO106: Mid-Term Review</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Highlight.js for Code Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/tokyo-night-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/cpp.min.js"></script>
 </head>
 <body>
 
     <!-- Navigation Bar -->
-    <nav class="bg-white/70 backdrop-blur-xl border-b border-white sticky top-0 z-50 shadow-sm">
-        <div class="max-w-5xl mx-auto px-4 sm:px-4 sm:px-6 py-2 sm:py-3 sm:py-4 flex justify-between items-center">
+    <!-- Floating Pill Header -->
+    <div id="smart-header" class="px-4 pt-4 sm:pt-6 sticky top-0 z-50" style="transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
+        <nav class="max-w-6xl mx-auto rounded-3xl px-4 sm:px-6 py-3 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0 border border-white/20">
             <a href="index.html" class="flex items-center space-x-3 group">
-                <div class="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center shadow-sm border border-purple-200/50 bg-white/50 group-hover:bg-white/80 transition-colors">
+                <div class="nav-btn w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center shadow-sm ">
                     <img src="dog_icon.png" alt="Dog Icon" class="w-full h-full object-cover">
                 </div>
-                <span class="font-outfit font-bold text-xl text-gray-800 tracking-tight">FECO106</span>
+                <span class="font-outfit font-extrabold text-2xl theme-gradient-text tracking-tighter">GoodLuck :D</span>
             </a>
-            <div class="flex space-x-4 sm:space-x-6">
-                <a href="index.html" class="text-gray-600 hover:text-purple-600 font-medium transition-colors flex items-center"><i class="fa-solid fa-house mr-2 text-sm"></i> Home</a>
-                <a href="index.html#dashboard" class="text-gray-600 hover:text-purple-600 font-medium transition-colors flex items-center"><i class="fa-solid fa-layer-group mr-2 text-sm"></i> Quizzes</a>
-                <a href="index.html#pdf-container" class="text-gray-600 hover:text-purple-600 font-medium transition-colors flex items-center"><i class="fa-solid fa-file-pdf mr-2 text-sm"></i> Materials</a>
+            <div class="flex flex-wrap justify-center items-center gap-1 sm:gap-2 md:gap-4 w-full md:w-auto">
+                <a href="index.html" class="nav-link font-outfit font-bold tracking-wide flex items-center"><i class="fa-solid fa-house sm:mr-2 text-sm"></i> <span class="hidden sm:inline">Home</span></a>
+                <a href="index.html#dashboard" class="nav-link font-outfit font-bold tracking-wide flex items-center"><i class="fa-solid fa-layer-group sm:mr-2 text-sm"></i> <span class="hidden sm:inline">Quizzes</span></a>
+                <a href="index.html#pdf-container" class="nav-link font-outfit font-bold tracking-wide flex items-center"><i class="fa-solid fa-file-pdf sm:mr-2 text-sm"></i> <span class="hidden sm:inline">Materials</span></a>
+                <div class="flex items-center ml-1 sm:ml-2 border-l border-white/20 pl-2 sm:pl-4 gap-1 sm:gap-2">
+                    <select id="theme-selector" class="nav-btn text-sm font-medium rounded-xl font-outfit px-3 focus:ring-purple-500 focus:border-purple-500 block p-2 backdrop-blur-sm cursor-pointer outline-none">
+                        <option value="aura">✨ Pastel Aura</option>
+                        <option value="sunset">🌅 Peach Sunset</option>
+                        <option value="glacial">❄️ Glacial Mint</option>
+                    </select>
+                    <button id="mode-toggle" class="nav-btn w-10 h-10 rounded-xl flex items-center justify-center focus:outline-none shadow-sm transition-transform hover:rotate-12">
+                        <i id="mode-icon" class="fa-solid fa-moon"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
+    </div>
 
     <div class="max-w-4xl mx-auto px-4 py-8 relative z-10">
         
@@ -47,7 +65,7 @@
                 </div>
 
                 <div class="mb-8">
-                    <h2 id="question-text" class="text-xl sm:text-2xl font-semibold mb-6 text-gray-800">Question text goes here?</h2>
+                    <h2 id="question-text" class="text-xl sm:text-2xl font-semibold mb-6" style="color: var(--text-main)">Question text goes here?</h2>
                     
                     <div id="options-container" class="grid gap-4">
                         <!-- Options generated here -->
@@ -57,12 +75,12 @@
                         <textarea id="open-ended-answer" rows="4" class="w-full p-4 border rounded-lg focus:ring-2 focus:ring-blue-500 mb-4" placeholder="Type your answer here..."></textarea>
                         <button id="reveal-btn" class="btn-primary px-4 sm:px-6 py-2 sm:py-3 w-full"><i class="fa-solid fa-paper-plane mr-2"></i>Submit Answer</button>
                         
-                        <div id="answer-feedback" class="hidden mt-6 p-4 bg-white/40 backdrop-blur-lg border border-gray-200/50 border rounded-lg">
-                            <h4 class="font-bold text-gray-700 mb-2">Model Answer:</h4>
-                            <p id="model-answer-text" class="text-gray-600 mb-4"></p>
+                        <div id="answer-feedback" class="hidden mt-6 p-5 card-container border rounded-xl">
+                            <h4 class="font-bold mb-3">Model Answer:</h4>
+                            <p id="model-answer-text" class="mb-5 leading-relaxed"></p>
                             <div class="flex gap-4 justify-center">
-                                <button id="self-correct-btn" class="px-6 py-2 btn-primary bg-green-500 px-6 py-2"><i class="fa-solid fa-check mr-2"></i>I Got It Right</button>
-                                <button id="self-wrong-btn" class="px-6 py-2 btn-primary bg-red-500 px-6 py-2"><i class="fa-solid fa-xmark mr-2"></i>I Got It Wrong</button>
+                                <button id="self-correct-btn" class="px-6 py-2 btn-success w-full sm:w-auto"><i class="fa-solid fa-check mr-2"></i>I Got It Right</button>
+                                <button id="self-wrong-btn" class="px-6 py-2 btn-danger w-full sm:w-auto"><i class="fa-solid fa-xmark mr-2"></i>I Got It Wrong</button>
                             </div>
                         </div>
                     </div>
@@ -77,23 +95,36 @@
 
 
         <!-- Result View -->
-        <div id="result-view" class="hidden card-container p-5 sm:p-8 text-center">
-            <img src="quiz_complete.png" alt="Quiz Complete Celebration" class="w-48 h-auto mx-auto mb-6 drop-shadow-md rounded-2xl">
-            <h2 class="text-3xl font-bold mb-4 text-gray-800">Quiz Completed!</h2>
+        <div id="result-view" class="hidden card-container p-6 sm:p-10 text-center relative overflow-hidden">
+            <!-- Theme-adaptive ambient background glow -->
+            <div class="absolute -top-20 -right-20 w-64 h-64 rounded-full blur-3xl opacity-20 pointer-events-none" style="background: var(--primary-color)"></div>
+            <div class="absolute -bottom-20 -left-20 w-64 h-64 rounded-full blur-3xl opacity-10 pointer-events-none" style="background: var(--danger-color)"></div>
             
+            <img id="completion-img" src="assets/gifs/success_1.gif" alt="Quiz Complete Celebration" class="w-32 sm:w-48 h-auto mx-auto mb-6 drop-shadow-xl rounded-2xl relative z-10 border-2 border-white/20 object-cover aspect-square">
             
-            <div class="grid grid-cols-2 gap-4 max-w-sm mx-auto mb-8">
-                <div class="bg-green-100 p-4 rounded-lg border border-green-200">
-                    <p class="text-green-800 text-sm font-medium">Correct</p>
-                    <p id="correct-count" class="text-3xl font-bold text-green-700">0</p>
+            <h2 class="text-2xl sm:text-4xl font-extrabold mb-6 font-outfit theme-gradient-text tracking-tight relative z-10">Quiz Completed!</h2>
+            
+            <div class="grid grid-cols-2 gap-4 sm:gap-5 max-w-sm mx-auto mb-8 relative z-10">
+                
+                <!-- Correct Stat Card -->
+                <div class="stat-card p-4 sm:p-5 rounded-xl flex flex-col items-center justify-center relative overflow-hidden group">
+                    <div class="absolute inset-0 opacity-10 bg-gradient-to-br from-transparent to-[var(--success-color)] group-hover:opacity-20 transition-opacity duration-500"></div>
+                    <i class="fa-solid fa-medal text-2xl sm:text-3xl mb-2 drop-shadow-md" style="color: var(--success-color)"></i>
+                    <p class="text-xs sm:text-sm font-bold uppercase tracking-wider mb-2" style="color: var(--text-muted)">Correct</p>
+                    <p id="correct-count" class="text-3xl sm:text-4xl font-black font-outfit drop-shadow-sm" style="color: var(--success-color)">0</p>
                 </div>
-                <div class="bg-red-100 p-4 rounded-lg border border-red-200">
-                    <p class="text-red-800 text-sm font-medium">Incorrect</p>
-                    <p id="incorrect-count" class="text-3xl font-bold text-red-700">0</p>
+                
+                <!-- Incorrect Stat Card -->
+                <div class="stat-card p-4 sm:p-5 rounded-xl flex flex-col items-center justify-center relative overflow-hidden group">
+                    <div class="absolute inset-0 opacity-10 bg-gradient-to-br from-transparent to-[var(--danger-color)] group-hover:opacity-20 transition-opacity duration-500"></div>
+                    <i class="fa-solid fa-circle-xmark text-2xl sm:text-3xl mb-2 drop-shadow-md" style="color: var(--danger-color)"></i>
+                    <p class="text-xs sm:text-sm font-bold uppercase tracking-wider mb-2" style="color: var(--text-muted)">Incorrect</p>
+                    <p id="incorrect-count" class="text-3xl sm:text-4xl font-black font-outfit drop-shadow-sm" style="color: var(--danger-color)">0</p>
                 </div>
+                
             </div>
 
-            <button id="home-btn" class="btn-primary w-full max-w-sm mx-auto"><i class="fa-solid fa-house mr-2"></i>Back to Dashboard</button>
+            <button id="home-btn" class="btn-primary px-6 py-3 w-full max-w-xs mx-auto text-base rounded-xl relative z-10 shadow-lg transition-all"><i class="fa-solid fa-house mr-2"></i>Back to Dashboard</button>
         </div>
     </div>
 
@@ -122,10 +153,10 @@
         let currentQuestionIndex = 0;
         let score = 0;
         let correctAnswers = 0;
+          let isGraded = false;
+          let isAnswered = false;
         let timer;
         let timeLeft = 0;
-        let isAnswered = false;
-        
         let dashboard = null;
         const quizView = document.getElementById('quiz-view');
         const resultView = document.getElementById('result-view');
@@ -205,14 +236,15 @@
             
             cancelQuitBtn.onclick = () => {
                 quitModal.classList.add('hidden');
-                if(!isAnswered) timer = setInterval(updateTimer, 1000);
+                if(!isAnswered) if (timer) clearInterval(timer);
+            timer = setInterval(updateTimer, 1000);
             };
         }
 
             const params = new URLSearchParams(window.location.search);
             const setIndex = params.get('set');
-            
-            if (setIndex !== null && quizData[setIndex]) {
+      const parsedIndex = parseInt(setIndex, 10);
+      if (setIndex !== null && !Number.isNaN(parsedIndex) && parsedIndex >= 0 && parsedIndex < quizData.length && quizData[parsedIndex]) {
                 dashboard = { classList: { add: ()=>{}, remove: ()=>{} } };
                 startQuiz(parseInt(setIndex));
             } else {
@@ -220,6 +252,7 @@
             }
         });
 function startQuiz(index) {
+            if (timer) clearInterval(timer);
             currentSetIndex = index;
             currentQuestionIndex = 0;
             score = 0;
@@ -237,19 +270,36 @@ function startQuiz(index) {
         }
 
         function loadQuestion() {
+            isGraded = false;
+            isAnswered = false;
+            nextBtn.classList.add("hidden");
+            nextBtn.disabled = false;
             const q = quizData[currentSetIndex].questions[currentQuestionIndex];
             isAnswered = false;
             
             qNum.textContent = currentQuestionIndex + 1;
             
-            qText.innerHTML = q.question;
+            
+            // Strip hardcoded inline styles and inject syntax highlighting classes
+            let qHTML = q.question;
+            qHTML = qHTML.replace(/<pre style="[^"]*">/g, '<pre class="quiz-code-block">');
+            qHTML = qHTML.replace(/<code>/g, '<code class="language-cpp">');
+            
+            qText.innerHTML = qHTML;
+            
+            // Trigger Highlight.js on the newly injected code blocks
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightElement(block);
+            });
+
             
             timeLeft = parseInt(q.timeLimit) || 30;
             timeEl.textContent = timeLeft;
-            timeEl.parentElement.classList.remove('border-red-500');
-            timeEl.parentElement.classList.add('border-blue-500');
+            timeEl.parentElement.style.borderColor = 'var(--primary-color)';
+            timeEl.style.color = 'var(--primary-color)';
             
             clearInterval(timer);
+            if (timer) clearInterval(timer);
             timer = setInterval(updateTimer, 1000);
             
             if (q.type === 'open_ended') {
@@ -267,8 +317,8 @@ function startQuiz(index) {
                 
                 q.options.forEach((opt, idx) => {
                     const btn = document.createElement('button');
-                    btn.className = `option-btn w-full p-3 sm:p-4 text-left border rounded-lg bg-white/40 backdrop-blur-lg border border-gray-200/50 hover:bg-white/60 font-medium ${borderClasses[idx]}`;
-                    btn.innerHTML = `<span class="mr-3 font-bold text-gray-800 bg-white px-3 py-1 rounded-md shadow-sm border border-gray-200 text-gray-700 backdrop-blur-sm">${idx + 1}</span> ${escapeHtml(opt)}`;
+                    btn.className = `option-btn w-full p-3 sm:p-4 text-left font-medium rounded-lg flex items-center ${borderClasses[idx]}`;
+                    btn.innerHTML = `<span class="option-badge mr-3 font-bold px-3 py-1 rounded-md shadow-sm backdrop-blur-sm">${idx + 1}</span> <span>${escapeHtml(opt)}</span>`;
                     btn.onclick = () => selectOption(idx + 1, btn);
                     optionsContainer.appendChild(btn);
                 });
@@ -282,8 +332,8 @@ function startQuiz(index) {
             timeEl.textContent = timeLeft;
             
             if (timeLeft <= 5) {
-                timeEl.parentElement.classList.remove('border-blue-500');
-                timeEl.parentElement.classList.add('border-red-500');
+                
+                timeEl.parentElement.style.borderColor = 'var(--danger-color)'; timeEl.style.color = 'var(--danger-color)';
             }
             
             if (timeLeft <= 0) {
@@ -303,6 +353,8 @@ function startQuiz(index) {
         };
 
         function showModelAnswer() {
+              if(isAnswered) return;
+              isAnswered = true;
             isAnswered = true;
             oeAnswer.disabled = true;
             revealBtn.classList.add('hidden');
@@ -313,6 +365,8 @@ function startQuiz(index) {
         }
 
         document.getElementById('self-correct-btn').onclick = () => {
+              if(isGraded) return;
+              isGraded = true;
             const q = quizData[currentSetIndex].questions[currentQuestionIndex];
             correctAnswers++;
             
@@ -321,6 +375,8 @@ function startQuiz(index) {
         };
 
         document.getElementById('self-wrong-btn').onclick = () => {
+              if(isGraded) return;
+              isGraded = true;
             answerFeedback.classList.add('hidden');
             nextBtn.click();
         };
@@ -352,7 +408,7 @@ function startQuiz(index) {
             clearInterval(timer);
             
             const q = quizData[currentSetIndex].questions[currentQuestionIndex];
-            const correctOpt = q.correctOption;
+            const correctOpt = Number(q.correctOption);
                         
             const buttons = optionsContainer.children;
             for (let i = 0; i < buttons.length; i++) {
@@ -375,6 +431,8 @@ function startQuiz(index) {
         }
         
         nextBtn.onclick = () => {
+              if(nextBtn.disabled) return;
+              nextBtn.disabled = true;
             currentQuestionIndex++;
             if (currentQuestionIndex < quizData[currentSetIndex].questions.length) {
                 loadQuestion();
@@ -386,8 +444,14 @@ function startQuiz(index) {
         
         
         function showResults() {
+              if(timer) clearInterval(timer);
             quizView.classList.add('hidden');
             resultView.classList.remove('hidden');
+            
+            // Randomly select one of the success GIFs
+            const availableGifs = ['assets/gifs/amazed_mind_blown.gif', 'assets/gifs/nice_borat.gif', 'assets/gifs/nice_key_and_peele.gif', 'assets/gifs/nice_michael_rosen.gif', 'assets/gifs/goodjob_koolaid_man.gif', 'assets/gifs/goodjob_thumbs_up.gif', 'assets/gifs/goodjob_spongebob.gif', 'assets/gifs/goodjob_office.gif', 'assets/gifs/very_nice_borat.gif', 'assets/gifs/cool_kitty_sunglasses.gif', 'assets/gifs/reaction_user_added_1.gif', 'assets/gifs/reaction_user_added_2.gif', 'assets/gifs/reaction_user_added_3.gif', 'assets/gifs/reaction_user_added_4.gif', 'assets/gifs/reaction_user_added_5.gif'];
+            const randomGifPath = availableGifs[Math.floor(Math.random() * availableGifs.length)];
+            document.getElementById('completion-img').src = randomGifPath;
             
             
             document.getElementById('correct-count').textContent = correctAnswers;
@@ -449,19 +513,135 @@ function startQuiz(index) {
     </script>
 
     <!-- Quit Confirmation Modal -->
-    <div id="quit-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center backdrop-blur-sm transition-opacity">
-        <div class="bg-white/70 backdrop-blur-2xl border border-gray-200/50 p-5 sm:p-8 rounded-2xl shadow-2xl max-w-sm w-full text-center border border-gray-100">
-            <div class="text-red-500 mb-4 text-5xl">
+    <div id="quit-modal" class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center backdrop-blur-md transition-opacity">
+        <div class="card-container p-6 sm:p-8 max-w-sm w-full mx-4 text-center">
+            <div class="mb-5 text-5xl" style="color: var(--danger-color)">
                 <i class="fa-solid fa-triangle-exclamation"></i>
             </div>
-            <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2 font-outfit ">Quit Quiz?</h3>
-            <p class="text-gray-500 mb-8">All your current progress will be lost. Are you sure you want to return to the dashboard?</p>
+            <h3 class="text-xl sm:text-2xl font-bold mb-3 font-outfit style="color: var(--text-main)"">Quit Quiz?</h3>
+            <p class="mb-8 leading-relaxed font-medium">All your current progress will be lost. Are you sure you want to return to the dashboard?</p>
             <div class="flex flex-col space-y-3">
-                <button id="confirm-quit-btn" class="btn-danger px-4 sm:px-6 py-2 sm:py-3 w-full">Yes, Quit Quiz</button>
-                <button id="cancel-quit-btn" class="btn-secondary px-4 sm:px-6 py-2 sm:py-3 w-full">Cancel</button>
+                <button id="confirm-quit-btn" class="btn-danger px-4 sm:px-6 py-2 sm:py-3 w-full font-bold">Yes, Quit Quiz</button>
+                <button id="cancel-quit-btn" class="btn-secondary px-4 sm:px-6 py-2 sm:py-3 w-full font-bold">Cancel</button>
             </div>
         </div>
     </div>
 
+
+    <script>
+        // Theme & Mode Logic
+        const themeSelector = document.getElementById('theme-selector');
+        const modeToggle = document.getElementById('mode-toggle');
+        const modeIcon = document.getElementById('mode-icon');
+        
+        // Load saved theme
+        const savedTheme = localStorage.getItem('selectedTheme') || 'aura';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        if (themeSelector) themeSelector.value = savedTheme;
+
+        // Load saved mode or default strictly to light
+        let currentMode = localStorage.getItem('colorMode') || 'light';
+        document.documentElement.setAttribute('data-color-mode', currentMode);
+        updateModeIcon();
+
+        // Listen for Theme changes
+        if (themeSelector) {
+            themeSelector.addEventListener('change', (e) => {
+                const newTheme = e.target.value;
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('selectedTheme', newTheme);
+            });
+        }
+        
+        // Listen for Mode changes
+        if (modeToggle) {
+            modeToggle.addEventListener('click', () => {
+                currentMode = currentMode === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-color-mode', currentMode);
+                localStorage.setItem('colorMode', currentMode);
+                updateModeIcon();
+            });
+        }
+
+        function updateModeIcon() {
+            if (modeIcon) {
+                if (currentMode === 'dark') {
+                    modeIcon.className = 'fa-solid fa-sun';
+                } else {
+                    modeIcon.className = 'fa-solid fa-moon';
+                }
+            }
+        }
+    </script>
+
+    <script>
+        // Smart Header Logic - 300px Threshold & Top Hover Reveal
+        let lastScrollY = window.scrollY;
+        let scrollUpDistance = 0;
+        let ticking = false;
+        let isHoveringTop = false;
+        
+        const header = document.getElementById('smart-header');
+        
+        function showHeader() {
+            header.style.transform = 'translateY(0)';
+            header.style.opacity = '1';
+            header.style.pointerEvents = 'auto';
+        }
+
+        function hideHeader() {
+            if (window.scrollY > 100 && !isHoveringTop) {
+                header.style.transform = 'translateY(-120%)';
+                header.style.opacity = '0';
+                header.style.pointerEvents = 'none';
+            }
+        }
+
+        // 1. Mouse hover logic for desktop
+        document.addEventListener('mousemove', (e) => {
+            if (e.clientY < 90) {
+                if (!isHoveringTop) {
+                    isHoveringTop = true;
+                    showHeader();
+                }
+            } else {
+                if (isHoveringTop) {
+                    isHoveringTop = false;
+                    // Hide if we move mouse away, UNLESS we earned the header by scrolling up 300px
+                    if (scrollUpDistance < 300 && window.scrollY > 100) {
+                        hideHeader();
+                    }
+                }
+            }
+        });
+
+        // 2. Scroll logic
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const currentScrollY = window.scrollY;
+                    const scrollDelta = currentScrollY - lastScrollY;
+                    
+                    if (scrollDelta > 0) {
+                        // Scrolling DOWN
+                        scrollUpDistance = 0; // Reset up-scroll counter
+                        hideHeader();
+                    } else if (scrollDelta < 0) {
+                        // Scrolling UP
+                        scrollUpDistance += Math.abs(scrollDelta);
+                        
+                        // Reveal if scrolled up intentionally by 300px, or near top
+                        if (scrollUpDistance > 300 || currentScrollY < 100) {
+                            showHeader();
+                        }
+                    }
+                    
+                    lastScrollY = currentScrollY;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+    </script>
 </body>
 </html>
