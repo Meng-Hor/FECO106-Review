@@ -39,7 +39,7 @@
           <option value="glacial">❄️ Glacial Mint</option>
         </select>
         <!-- Mode toggle -->
-        <button id="mode-toggle" class="nav-btn w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center focus:outline-none shadow-sm transition-transform hover:rotate-12">
+        <button id="mode-toggle" class="nav-btn w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center focus:outline-none shadow-sm">
           <i id="mode-icon" class="fa-solid fa-moon text-sm sm:text-base"></i>
         </button>
         <!-- Mobile hamburger (visible on mobile only) -->
@@ -192,6 +192,8 @@
     // Listen for Mode changes
     if (modeToggle) {
       modeToggle.addEventListener('click', () => {
+        modeToggle.classList.add('spinning');
+        modeToggle.addEventListener('animationend', () => modeToggle.classList.remove('spinning'), { once: true });
         currentMode = currentMode === 'dark' ? 'light' : 'dark';
         document.documentElement.setAttribute('data-color-mode', currentMode);
         localStorage.setItem('colorMode', currentMode);
