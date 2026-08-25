@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
-    /* Vanilla Glass Theme */
-    --bg-vanilla: #FDFBF7; /* Slightly darker, richer cream to provide contrast */
-    --water-shadow: 0 12px 40px 0 rgba(110, 90, 70, 0.15); /* Stronger shadow for depth */
-    --glass-bg: rgba(255, 255, 255, 0.85); /* More opaque white for the cards */
-    --glass-border: rgba(0, 0, 0, 0.06); /* Darker subtle border to separate white from cream */
+    /* Pastel Aura Theme */
+    --bg-vanilla: #FFFFFF;
+    --water-shadow: 0 12px 40px 0 rgba(160, 150, 180, 0.15); /* Cooler, softer purple shadow */
+    --glass-bg: rgba(255, 255, 255, 0.7); /* More transparent so pastel shows through */
+    --glass-border: rgba(255, 255, 255, 1); 
     
-    --primary-blue: rgba(194, 110, 70, 0.9); /* Slightly more vibrant terracotta/orange */
-    --primary-hover: rgba(160, 85, 50, 1);
+    --primary-blue: rgba(167, 139, 250, 0.9); /* Vibrant pastel violet */
+    --primary-hover: rgba(139, 92, 246, 1);
     
-    --text-main: #2C2825; /* Darker, richer espresso text */
+    --text-main: #312E81; /* Deep indigo text for contrast */
 }
 
 * {
@@ -28,12 +28,12 @@ h1, h2, h3, h4 {
 
 body {
     background-color: #FFFFFF;
-    /* Modern mesh gradient mixing pure white and warm vanilla */
     background-image: 
-        radial-gradient(circle at 20% 30%, rgba(250, 240, 225, 0.9), transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(245, 235, 215, 0.9), transparent 50%),
-        radial-gradient(circle at 50% 100%, rgba(240, 230, 210, 0.8), transparent 60%),
-        linear-gradient(135deg, #FFFFFF 0%, #FDFBF7 40%, #F0EBE1 100%);
+        radial-gradient(at 0% 0%, rgba(255, 212, 235, 0.9) 0px, transparent 60%),
+        radial-gradient(at 100% 0%, rgba(212, 232, 255, 0.9) 0px, transparent 60%),
+        radial-gradient(at 100% 100%, rgba(255, 245, 185, 0.9) 0px, transparent 60%),
+        radial-gradient(at 0% 100%, rgba(212, 225, 255, 0.8) 0px, transparent 60%),
+        radial-gradient(at 50% 50%, rgba(255, 255, 255, 1) 0px, transparent 80%);
     background-attachment: fixed;
     color: var(--text-main);
     min-height: 100vh;
@@ -75,19 +75,19 @@ header p {
 
 /* Primary Buttons */
 .btn-primary {
-    background: #2563EB; /* Vibrant Royal Blue */
+    background: #A78BFA; /* Vibrant pastel violet */
     color: white !important;
     border-radius: 0.75rem;
     font-weight: 600;
     border: none;
     padding: 0.75rem 1.5rem;
     transition: all 0.2s ease;
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+    box-shadow: 0 4px 15px rgba(167, 139, 250, 0.4);
 }
 .btn-primary:hover {
-    background: #1D4ED8;
+    background: #8B5CF6;
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.5);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
 }
 
 /* Secondary / Glass Buttons (Quiz Sets) */
@@ -115,19 +115,19 @@ header p {
 
 /* Danger Button */
 .btn-danger {
-    background: #EF4444; /* Vibrant Crimson Red */
+    background: #F472B6; /* Vibrant pastel pink */
     color: white !important;
     border-radius: 0.75rem;
     font-weight: 600;
     border: none;
     padding: 0.75rem 1.5rem;
     transition: all 0.2s ease;
-    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+    box-shadow: 0 4px 15px rgba(244, 114, 182, 0.4);
 }
 .btn-danger:hover {
-    background: #DC2626;
+    background: #EC4899;
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.5);
+    box-shadow: 0 6px 20px rgba(236, 72, 153, 0.5);
 }
 
 /* MCQ Options */
@@ -147,14 +147,16 @@ header p {
     box-shadow: 0 8px 25px rgba(194, 110, 70, 0.15);
 }
 .correct { 
-    background: #10B981 !important; /* Vibrant Emerald Green */
+    background: #34D399 !important; /* Pastel Emerald/Mint */
     color: white !important; 
     border: none !important;
+    box-shadow: 0 4px 15px rgba(52, 211, 153, 0.4) !important;
 }
 .incorrect { 
-    background: #EF4444 !important; /* Vibrant Crimson Red */
+    background: #F472B6 !important; /* Pastel Pink */
     color: white !important; 
     border: none !important;
+    box-shadow: 0 4px 15px rgba(244, 114, 182, 0.4) !important;
 }
 
 /* Textarea / Input */

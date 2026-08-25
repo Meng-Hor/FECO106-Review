@@ -11,18 +11,18 @@
 <body>
 
     <!-- Navigation Bar -->
-    <nav class="bg-[#FDE8D0]/90 backdrop-blur-xl border-b border-[#F0D5B5] sticky top-0 z-50 shadow-sm">
+    <nav class="bg-white/70 backdrop-blur-xl border-b border-white sticky top-0 z-50 shadow-sm">
         <div class="max-w-5xl mx-auto px-4 sm:px-4 sm:px-6 py-2 sm:py-3 sm:py-4 flex justify-between items-center">
             <a href="index.html" class="flex items-center space-x-3 group">
-                <div class="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center shadow-sm border border-orange-200/50 bg-white/50 group-hover:bg-white/80 transition-colors">
+                <div class="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center shadow-sm border border-purple-200/50 bg-white/50 group-hover:bg-white/80 transition-colors">
                     <img src="dog_icon.png" alt="Dog Icon" class="w-full h-full object-cover">
                 </div>
                 <span class="font-outfit font-bold text-xl text-gray-800 tracking-tight">FECO106</span>
             </a>
             <div class="flex space-x-4 sm:space-x-6">
-                <a href="index.html" class="text-gray-600 hover:text-orange-600 font-medium transition-colors flex items-center"><i class="fa-solid fa-house mr-2 text-sm"></i> Home</a>
-                <a href="index.html#dashboard" class="text-gray-600 hover:text-orange-600 font-medium transition-colors flex items-center"><i class="fa-solid fa-layer-group mr-2 text-sm"></i> Quizzes</a>
-                <a href="index.html#pdf-container" class="text-gray-600 hover:text-orange-600 font-medium transition-colors flex items-center"><i class="fa-solid fa-file-pdf mr-2 text-sm"></i> Materials</a>
+                <a href="index.html" class="text-gray-600 hover:text-purple-600 font-medium transition-colors flex items-center"><i class="fa-solid fa-house mr-2 text-sm"></i> Home</a>
+                <a href="index.html#dashboard" class="text-gray-600 hover:text-purple-600 font-medium transition-colors flex items-center"><i class="fa-solid fa-layer-group mr-2 text-sm"></i> Quizzes</a>
+                <a href="index.html#pdf-container" class="text-gray-600 hover:text-purple-600 font-medium transition-colors flex items-center"><i class="fa-solid fa-file-pdf mr-2 text-sm"></i> Materials</a>
             </div>
         </div>
     </nav>
@@ -111,13 +111,13 @@
                 btn.className = 'btn-secondary p-4 sm:p-6 text-left group';
                 btn.innerHTML = `
                         ${set.set.includes("PDF_") ? 
-                            '<i class="fa-solid fa-pen-to-square text-orange-600 mb-3  text-2xl group-hover:scale-110 transition-transform"></i>' : 
+                            '<i class="fa-solid fa-pen-to-square text-purple-500 mb-3  text-2xl group-hover:scale-110 transition-transform"></i>' : 
                             (set.set.includes("Revision") ? 
-                                '<i class="fa-solid fa-book text-orange-600 mb-3  text-2xl group-hover:scale-110 transition-transform"></i>' :
-                                '<i class="fa-solid fa-list-check text-orange-600 mb-3  text-2xl group-hover:scale-110 transition-transform"></i>'
+                                '<i class="fa-solid fa-book text-purple-500 mb-3  text-2xl group-hover:scale-110 transition-transform"></i>' :
+                                '<i class="fa-solid fa-list-check text-purple-500 mb-3  text-2xl group-hover:scale-110 transition-transform"></i>'
                             )
                         }
-                        <h3 class="text-lg font-bold text-gray-800 group-hover:text-orange-600 mb-2 truncate">${cleanName}</h3>
+                        <h3 class="text-lg font-bold text-gray-800 group-hover:text-purple-600 mb-2 truncate">${cleanName}</h3>
                         <p class="text-sm text-gray-500">${set.questions.length} Questions</p>`;
                 btn.onclick = () => startQuiz(index);
                 setsContainer.appendChild(btn);
