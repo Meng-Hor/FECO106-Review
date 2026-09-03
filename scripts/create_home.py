@@ -1,0 +1,163 @@
+import os
+
+html_content = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="dog_icon_rounded.png">
+  <title>Subject Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Smart Header -->
+  <div id="smart-header" class="px-2 sm:px-4 pt-2 sm:pt-6 sticky top-0 z-50" style="transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
+    <nav class="max-w-6xl mx-auto rounded-2xl sm:rounded-3xl px-3 sm:px-6 py-2 sm:py-3 flex flex-row justify-between items-center border border-white/20" style="gap: 0;">
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center space-x-2 group flex-shrink-0">
+        <div class="nav-btn w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl overflow-hidden flex items-center justify-center shadow-sm">
+          <img src="dog_icon.png" alt="Dog Icon" class="w-full h-full object-cover">
+        </div>
+        <span class="font-outfit font-extrabold text-lg sm:text-2xl theme-gradient-text tracking-tighter">Portal</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <div class="hidden md:flex items-center gap-1 sm:gap-2 md:gap-4">
+        <a href="index.html" class="nav-link font-outfit font-bold tracking-wide flex items-center"><i class="fa-solid fa-house mr-2 text-sm"></i>Home</a>
+      </div>
+
+      <!-- Right Controls -->
+      <div class="flex items-center gap-1 sm:gap-2">
+        <select id="theme-selector" class="nav-btn text-xs sm:text-sm font-medium rounded-lg sm:rounded-xl font-outfit px-1.5 sm:px-3 p-1.5 sm:p-2 backdrop-blur-sm cursor-pointer outline-none max-w-[80px] sm:max-w-none">
+          <option value="aura">✨ Pastel Aura</option>
+          <option value="sunset">🌅 Peach Sunset</option>
+          <option value="glacial">❄️ Glacial Mint</option>
+        </select>
+        <button id="mode-toggle" class="nav-btn w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center focus:outline-none shadow-sm">
+          <i id="mode-icon" class="fa-solid fa-moon text-sm sm:text-base"></i>
+        </button>
+        <button id="mobile-menu-btn" class="nav-btn w-8 h-8 rounded-lg flex items-center justify-center md:hidden focus:outline-none shadow-sm" aria-label="Open menu">
+          <i id="hamburger-icon" class="fa-solid fa-bars text-sm"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden max-w-6xl mx-auto mt-1 rounded-2xl border border-white/20 px-4 py-3 flex flex-col gap-2" style="background: var(--nav-bg); backdrop-filter: blur(24px);">
+      <a href="index.html" class="nav-link font-outfit font-bold tracking-wide flex items-center py-2"><i class="fa-solid fa-house mr-3"></i>Home</a>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 relative z-10">
+    <!-- Hero Section -->
+    <div class="text-center mb-16 relative">
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full blur-[100px] opacity-30 pointer-events-none" style="background: var(--primary-color)"></div>
+      <h1 class="text-5xl sm:text-6xl font-extrabold mb-6 font-outfit theme-gradient-text tracking-tight relative z-10">Study Portal</h1>
+      <p class="text-lg sm:text-xl font-medium max-w-2xl mx-auto relative z-10" style="color: var(--text-muted)">Select a subject to begin reviewing</p>
+    </div>
+
+    <!-- Subjects View -->
+    <div id="subjects-container" class="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+      <!-- FECO106 Subject Card -->
+      <a href="feco106.html" class="card-container rounded-2xl p-6 relative group overflow-hidden block transition-all duration-300 hover:-translate-y-1" style="border: 1px solid var(--glass-border)">
+        <div class="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-gradient-to-br from-transparent" style="background-color: var(--primary-color)"></div>
+        <div class="flex items-start justify-between mb-4 relative z-10">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center shadow-sm" style="background: var(--nav-bg); border: 1px solid var(--glass-border)">
+            <i class="fa-solid fa-code text-2xl" style="color: var(--primary-color)"></i>
+          </div>
+          <span class="px-3 py-1 rounded-full text-xs font-bold" style="background: var(--primary-color); color: white;">Active</span>
+        </div>
+        <h3 class="text-xl font-bold mb-2 font-outfit" style="color: var(--text-main)">FECO106: Algorithm III</h3>
+        <p class="text-sm line-clamp-2" style="color: var(--text-muted)">Mid-Term Review, quizzes, and study materials for Algorithm III.</p>
+        <div class="mt-4 pt-4 border-t flex justify-between items-center" style="border-color: var(--glass-border)">
+          <span class="text-sm font-semibold" style="color: var(--primary-color)">Enter Subject <i class="fa-solid fa-arrow-right ml-1"></i></span>
+        </div>
+      </a>
+
+      <!-- Placeholder Subject Card -->
+      <div class="card-container rounded-2xl p-6 relative group overflow-hidden border border-dashed" style="border-color: var(--glass-border); opacity: 0.7;">
+        <div class="flex items-start justify-between mb-4 relative z-10">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center shadow-sm" style="background: var(--nav-bg); border: 1px solid var(--glass-border)">
+            <i class="fa-solid fa-plus text-2xl" style="color: var(--text-muted)"></i>
+          </div>
+        </div>
+        <h3 class="text-xl font-bold mb-2 font-outfit" style="color: var(--text-main)">More Subjects</h3>
+        <p class="text-sm line-clamp-2" style="color: var(--text-muted)">Additional subjects and courses will be added here in the future.</p>
+        <div class="mt-4 pt-4 border-t flex justify-between items-center" style="border-color: var(--glass-border)">
+          <span class="text-sm font-semibold italic" style="color: var(--text-muted)">Coming Soon</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Theme Logic (shared with feco106.html)
+    const themeSelector = document.getElementById('theme-selector');
+    const modeToggle = document.getElementById('mode-toggle');
+    const modeIcon = document.getElementById('mode-icon');
+    
+    // Load saved preferences
+    const savedTheme = localStorage.getItem('selectedTheme') || 'aura';
+    const isDarkMode = localStorage.getItem('darkMode') === 'true'; // Default light
+    
+    themeSelector.value = savedTheme;
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark-mode');
+      modeIcon.className = 'fa-solid fa-sun text-sm sm:text-base';
+    } else {
+      document.documentElement.classList.remove('dark-mode');
+      modeIcon.className = 'fa-solid fa-moon text-sm sm:text-base';
+    }
+
+    themeSelector.addEventListener('change', (e) => {
+      const newTheme = e.target.value;
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('selectedTheme', newTheme);
+    });
+
+    modeToggle.addEventListener('click', () => {
+        modeToggle.classList.add('spinning');
+        modeToggle.addEventListener('animationend', () => modeToggle.classList.remove('spinning'), { once: true });
+        
+        document.documentElement.classList.toggle('dark-mode');
+        const isDark = document.documentElement.classList.contains('dark-mode');
+        localStorage.setItem('darkMode', isDark);
+        modeIcon.className = isDark ? 'fa-solid fa-sun text-sm sm:text-base' : 'fa-solid fa-moon text-sm sm:text-base';
+    });
+  </script>
+
+  <script>
+    // Mobile Hamburger Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        const isOpen = !mobileMenu.classList.contains('hidden');
+        mobileMenu.classList.toggle('hidden');
+        hamburgerIcon.className = isOpen ? 'fa-solid fa-bars text-sm' : 'fa-solid fa-xmark text-sm';
+      });
+      // Close menu on link click
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          hamburgerIcon.className = 'fa-solid fa-bars text-sm';
+        });
+      });
+    }
+  </script>
+</body>
+</html>
+"""
+
+path = r'C:\Users\Ly Meng Hor ING\Documents\Lesson-Review\web\index.html'
+with open(path, 'w', encoding='utf-8') as f:
+    f.write(html_content)
+
+print("Created universal index.html")
