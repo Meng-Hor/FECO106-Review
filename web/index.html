@@ -92,42 +92,52 @@
     </div>
   </div>
 
-  <script>
-    // Theme Logic (shared with feco106.html)
+    <script>
+    // Theme & Mode Logic
     const themeSelector = document.getElementById('theme-selector');
     const modeToggle = document.getElementById('mode-toggle');
     const modeIcon = document.getElementById('mode-icon');
     
-    // Load saved preferences
+    // Load saved theme
     const savedTheme = localStorage.getItem('selectedTheme') || 'aura';
-    const isDarkMode = localStorage.getItem('darkMode') === 'true'; // Default light
-    
-    themeSelector.value = savedTheme;
     document.documentElement.setAttribute('data-theme', savedTheme);
-    
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark-mode');
-      modeIcon.className = 'fa-solid fa-sun text-sm sm:text-base';
-    } else {
-      document.documentElement.classList.remove('dark-mode');
-      modeIcon.className = 'fa-solid fa-moon text-sm sm:text-base';
+    if (themeSelector) themeSelector.value = savedTheme;
+
+    // Load saved mode or default strictly to light
+    let currentMode = localStorage.getItem('colorMode') || 'light';
+    document.documentElement.setAttribute('data-color-mode', currentMode);
+    updateModeIcon();
+
+    // Listen for Theme changes
+    if (themeSelector) {
+      themeSelector.addEventListener('change', (e) => {
+        const newTheme = e.target.value;
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('selectedTheme', newTheme);
+      });
     }
-
-    themeSelector.addEventListener('change', (e) => {
-      const newTheme = e.target.value;
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('selectedTheme', newTheme);
-    });
-
-    modeToggle.addEventListener('click', () => {
+    
+    // Listen for Mode changes
+    if (modeToggle) {
+      modeToggle.addEventListener('click', () => {
         modeToggle.classList.add('spinning');
         modeToggle.addEventListener('animationend', () => modeToggle.classList.remove('spinning'), { once: true });
-        
-        document.documentElement.classList.toggle('dark-mode');
-        const isDark = document.documentElement.classList.contains('dark-mode');
-        localStorage.setItem('darkMode', isDark);
-        modeIcon.className = isDark ? 'fa-solid fa-sun text-sm sm:text-base' : 'fa-solid fa-moon text-sm sm:text-base';
-    });
+        currentMode = currentMode === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-color-mode', currentMode);
+        localStorage.setItem('colorMode', currentMode);
+        updateModeIcon();
+      });
+    }
+
+    function updateModeIcon() {
+      if (modeIcon) {
+        if (currentMode === 'dark') {
+          modeIcon.className = 'fa-solid fa-sun text-sm sm:text-base';
+        } else {
+          modeIcon.className = 'fa-solid fa-moon text-sm sm:text-base';
+        }
+      }
+    }
   </script>
 
   <script>
