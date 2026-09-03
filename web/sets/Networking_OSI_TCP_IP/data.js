@@ -1,5 +1,5 @@
 window.quizData.push({
-    "title": "OSI and TCP/IP Model",
+    "set": "OSI_and_TCP_IP_Model",
     "questions": [
         {
             "type": "multiple_choice",
@@ -10,7 +10,7 @@ window.quizData.push({
                 "Physical, Network, Data Link, Transport, Presentation, Session, Application",
                 "Data Link, Physical, Network, Transport, Session, Presentation, Application"
             ],
-            "correct": 2,
+            "correctOption": 2,
             "explanation": "Layer 1 is the bottom (Physical) and Layer 7 is the top (Application). A common mnemonic from L1 to L7 is 'Please Do Not Throw Sausage Pizza Away'.",
             "timeLimit": 30
         },
@@ -23,7 +23,7 @@ window.quizData.push({
                 "Application, Presentation, and Session",
                 "Presentation, Session, and Transport"
             ],
-            "correct": 3,
+            "correctOption": 3,
             "explanation": "The TCP/IP model consolidates the top three OSI layers (Session, Presentation, and Application) into a single Application layer.",
             "timeLimit": 30
         },
@@ -36,7 +36,7 @@ window.quizData.push({
                 "Physical, Network, Transport, Application",
                 "Data Link, Network, Host-to-Host, Process"
             ],
-            "correct": 2,
+            "correctOption": 2,
             "explanation": "The 4-layer TCP/IP model consists of: 1. Network Access (Link), 2. Internet, 3. Transport (Host-to-Host), 4. Application (Process).",
             "timeLimit": 30
         },
@@ -49,7 +49,7 @@ window.quizData.push({
                 "Packet",
                 "Bit"
             ],
-            "correct": 3,
+            "correctOption": 3,
             "explanation": "Layer 1: Bits. Layer 2: Frames. Layer 3: Packets. Layer 4: Segments/Datagrams.",
             "timeLimit": 30
         },
@@ -62,7 +62,7 @@ window.quizData.push({
                 "Encapsulation",
                 "Fragmentation"
             ],
-            "correct": 3,
+            "correctOption": 3,
             "explanation": "Encapsulation is the process where each descending layer wraps the payload from the layer above it with its own header.",
             "timeLimit": 30
         },
@@ -75,7 +75,7 @@ window.quizData.push({
                 "Network Layer",
                 "Transport Layer"
             ],
-            "correct": 2,
+            "correctOption": 2,
             "explanation": "The Data Link layer encapsulates a packet into a frame by adding a header and a trailer containing the Frame Check Sequence (FCS) using CRC.",
             "timeLimit": 30
         },
@@ -88,7 +88,7 @@ window.quizData.push({
                 "Session (Layer 5)",
                 "Transport (Layer 4)"
             ],
-            "correct": 2,
+            "correctOption": 2,
             "explanation": "The Presentation Layer ensures that data from the sender is formatted in a syntax that the receiver's application layer can understand (compression, encryption, formatting).",
             "timeLimit": 30
         },
@@ -101,7 +101,7 @@ window.quizData.push({
                 "Network Layer (Layer 3)",
                 "Presentation Layer (Layer 6)"
             ],
-            "correct": 1,
+            "correctOption": 1,
             "explanation": "The Session Layer manages dialog control and sets synchronization checkpoints.",
             "timeLimit": 30
         },
@@ -114,7 +114,7 @@ window.quizData.push({
                 "Data Link Layer",
                 "Session Layer"
             ],
-            "correct": 2,
+            "correctOption": 2,
             "explanation": "The Transport Layer (Layer 4) handles end-to-end process-to-process communication using port numbers and segments user data.",
             "timeLimit": 30
         },
@@ -127,7 +127,7 @@ window.quizData.push({
                 "IGMP",
                 "SNMP"
             ],
-            "correct": 2,
+            "correctOption": 2,
             "explanation": "ICMP (Internet Control Message Protocol) operates at Layer 3 to deliver diagnostics, unreachable notifications, and echo request/reply messages.",
             "timeLimit": 30
         },
@@ -140,7 +140,7 @@ window.quizData.push({
                 "Automatically assign IP addresses to hosts",
                 "Route packets between different autonomous systems"
             ],
-            "correct": 2,
+            "correctOption": 2,
             "explanation": "ARP is used on local subnets to discover the physical hardware address (MAC address) corresponding to a known logical address (IPv4 address).",
             "timeLimit": 30
         },
@@ -153,7 +153,7 @@ window.quizData.push({
                 "Network Interface and Frame Control",
                 "CSMA and CD"
             ],
-            "correct": 2,
+            "correctOption": 2,
             "explanation": "The IEEE 802 standard divides Layer 2 into LLC (Logical Link Control - 802.2) and MAC (Media Access Control - 802.3/802.11).",
             "timeLimit": 30
         },
@@ -166,7 +166,7 @@ window.quizData.push({
                 "Layer 3 (Network)",
                 "Layer 4 (Transport)"
             ],
-            "correct": 2,
+            "correctOption": 2,
             "explanation": "Standard switches inspect destination MAC addresses in the Layer 2 Ethernet frame header to look up entries in their MAC address table.",
             "timeLimit": 30
         },
@@ -179,7 +179,7 @@ window.quizData.push({
                 "Switch",
                 "Gateway"
             ],
-            "correct": 2,
+            "correctOption": 2,
             "explanation": "A Hub is a multiport repeater operating at Layer 1. It simply regenerates and broadcasts incoming electrical signals.",
             "timeLimit": 30
         },
@@ -192,7 +192,7 @@ window.quizData.push({
                 "64 bits and 32 bits",
                 "48 bits and 128 bits"
             ],
-            "correct": 2,
+            "correctOption": 2,
             "explanation": "MAC addresses (Layer 2) are 48 bits (6 bytes). IPv4 addresses (Layer 3) are 32 bits (4 bytes).",
             "timeLimit": 30
         },
@@ -205,7 +205,7 @@ window.quizData.push({
                 "Layer 4",
                 "Layer 7"
             ],
-            "correct": 3,
+            "correctOption": 3,
             "explanation": "Port numbers are 16-bit fields found in the Transport layer (Layer 4) headers (TCP and UDP).",
             "timeLimit": 30
         },
@@ -218,7 +218,7 @@ window.quizData.push({
                 "TCP/IP defines 7 layers while OSI defines 4 layers.",
                 "OSI does not support connectionless communication at any layer."
             ],
-            "correct": 2,
+            "correctOption": 2,
             "explanation": "OSI was a theoretical standard with clear boundaries. TCP/IP was developed empirically by DARPA/IETF to solve practical problems.",
             "timeLimit": 30
         },
@@ -231,7 +231,7 @@ window.quizData.push({
                 "Checksum Calculation",
                 "Path MTU Discovery"
             ],
-            "correct": 2,
+            "correctOption": 2,
             "explanation": "TCP uses sliding window flow control to let the sender know how much buffer space the receiver currently has available.",
             "timeLimit": 30
         },
@@ -244,7 +244,7 @@ window.quizData.push({
                 "TCP and UDP",
                 "ARP and ICMP"
             ],
-            "correct": 2,
+            "correctOption": 2,
             "explanation": "Both DNS (Domain Name System) and DHCP (Dynamic Host Configuration Protocol) are Application-layer services.",
             "timeLimit": 30
         },
@@ -257,7 +257,7 @@ window.quizData.push({
                 "It does not touch any headers; it only duplicates the bits.",
                 "It strips all headers up to Layer 7 and re-encrypts the payload."
             ],
-            "correct": 2,
+            "correctOption": 2,
             "explanation": "When routing, a router de-encapsulates the L2 frame, inspects L3 dest IP, decrements TTL, and re-encapsulates into a brand new L2 frame.",
             "timeLimit": 30
         }
